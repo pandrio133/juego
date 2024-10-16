@@ -26,7 +26,7 @@ public class Ventana extends JFrame implements Runnable{
     //fotogramas
     private final int FPS=30;
     //tiempo
-    private double TARGETTIME=1000000000/FPS;
+    private double TARGETTIME=100000000/FPS;
     private double delta=0;
     private int AVERAGEFPS=FPS;
     //clase de estados
