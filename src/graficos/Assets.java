@@ -10,6 +10,9 @@ public class Assets {
     public static BufferedImage fondo;
     //efectos del juego
     public static BufferedImage EfectV;
+    public static BufferedImage[] EfectEx = new BufferedImage[3];
+    
+    
     //armas
     public static BufferedImage arma;
     public static BufferedImage escudo;
@@ -32,6 +35,9 @@ public class Assets {
         fondo=Loader.ImageLoader("recursos/imagenes/tierra.jpg");
         
         EfectV=Loader.ImageLoader("recursos/efectos/fast.png");
+        for (int i = 0; i < 3; i++) {
+        EfectV=Loader.ImageLoader("recursos/efectos/Ex"+i+".png");
+        }
         
         arma=Loader.ImageLoader("recursos/imagenes/arma.png");
         escudo=Loader.ImageLoader("recursos/imagenes/escudo.png");
