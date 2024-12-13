@@ -66,6 +66,8 @@ public abstract class MovimientosObjeto extends objetosJuego{
     
     protected void Destruccion(){
         EJuego.getMovimientosObjetos().remove(this);
+        EJuego.oleda();
+
     }
     protected Vectores2D getCenter(){
         return new Vectores2D(posicion.getX()+width/2,posicion.getY()+width/2);
