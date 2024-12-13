@@ -11,7 +11,7 @@ public class Constantes {
     public static final double Playe_Max_Vel=7.0;
     
     //laser propiedasdes
-    public static final double Laser_Vel=20.0;
+    public static final double Laser_Vel=30.0;
     
     //Obtaculos rocas y arbustos;
     public static final double Obtaculo_Vel=2.0;
