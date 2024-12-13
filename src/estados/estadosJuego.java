@@ -15,10 +15,19 @@ import objetos.player;
 
 public class estadosJuego {
     
+    
     private player Jugador;
     private ArrayList<MovimientosObjeto> movimientosObjetos= new ArrayList<MovimientosObjeto>();
     
     private int obstaculos;
+
+    public int getObstaculos() {
+        return obstaculos;
+    }
+
+    public void setObstaculos(int obstaculos) {
+        this.obstaculos = obstaculos;
+    }
     private Cronometro fireRate=new Cronometro();
     
     public estadosJuego() {
@@ -29,38 +38,45 @@ public class estadosJuego {
         movimientosObjetos.add(Jugador);
         
         obstaculos=1;
-        startWave();
+        startWave();      
     }   
     
     private void startWave(){
         double x,y;
         BufferedImage textura;
-
-            for(int i=0; i<obstaculos&& obstaculos<=8;obstaculos++,i++){
+        int i=0;
+        
+            for(; i<obstaculos && obstaculos<=8;obstaculos++,i++){
                 x= i%2==0?Math.random()*Constantes.WIDTH:0;
                 y=i%2==0?0:Math.random()*Constantes.HEIGHT;
             
                 int random=(int)(Math.random()*10);
-                
+                  
                 if (random<=6 ) {
                     textura=Assets.rocas;
                     movimientosObjetos.add(new Obtaculos(
-                        new Vectores2D(0, 0.4+(Math.random()*Math.PI*2)).setDireccion(1.56),//Math.random()*Math.PI*2), 
+                        new Vectores2D(0,0.4+(Math.random()*Math.PI*2)).setDireccion(1.56),//Math.random()*Math.PI*2), 
                         Constantes.Obtaculo_Vel*Math.random()+1, 
                         new Vectores2D(x, y),
                         textura, 
                         this));
                 }
-                if (random>6 ) {
+                if (random >6 ) {
                     textura=Assets.arbustos;
                     movimientosObjetos.add(new Obtaculos(
-                        new Vectores2D(0, 0.4+(Math.random()*Math.PI*2)).setDireccion(1.6), 
+                        new Vectores2D(0,0.4+(Math.random()*Math.PI*2)).setDireccion(1.6), 
                         Constantes.Obtaculo_Vel*Math.random()+1, 
                         new Vectores2D(x, y),
                         textura, 
                         this));
                 }
-              
+            }                
+    }
+    
+    public void oleda(){
+        if (movimientosObjetos.size()== 1 && movimientosObjetos.get(0).equals(Jugador)) {
+            obstaculos=1;
+            startWave();
         }
     }
     
