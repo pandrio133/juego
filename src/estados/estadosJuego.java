@@ -1,5 +1,6 @@
 package estados;
 
+import graficos.Animation;
 import graficos.Assets;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,9 +19,9 @@ public class estadosJuego {
     
     private player Jugador;
     private ArrayList<MovimientosObjeto> movimientosObjetos= new ArrayList<MovimientosObjeto>();
-    
     private int obstaculos;
-
+    private ArrayList<Animation>explosion = new ArrayList<Animation>(); 
+    
     public int getObstaculos() {
         return obstaculos;
     }
@@ -55,7 +56,7 @@ public class estadosJuego {
                 if (random<=6 ) {
                     textura=Assets.rocas;
                     movimientosObjetos.add(new Obtaculos(
-                        new Vectores2D(0,0.4+(Math.random()*Math.PI*2)).setDireccion(1.56),//Math.random()*Math.PI*2), 
+                        new Vectores2D(0,0.4+(Math.random()*Math.PI*0.2)).setDireccion(1.56),//Math.random()*Math.PI*2), 
                         Constantes.Obtaculo_Vel*Math.random()+1, 
                         new Vectores2D(x, y),
                         textura, 
@@ -64,7 +65,7 @@ public class estadosJuego {
                 if (random >6 ) {
                     textura=Assets.arbustos;
                     movimientosObjetos.add(new Obtaculos(
-                        new Vectores2D(0,0.4+(Math.random()*Math.PI*2)).setDireccion(1.6), 
+                        new Vectores2D(0,0.4+(Math.random()*Math.PI*0.2)).setDireccion(1.6), 
                         Constantes.Obtaculo_Vel*Math.random()+1, 
                         new Vectores2D(x, y),
                         textura, 
@@ -80,11 +81,29 @@ public class estadosJuego {
         }
     }
     
+    public void playExplo(Vectores2D position){
+        explosion.add(new Animation(
+                Assets.EfectEx, 
+                50, 
+                position.subtraer(new Vectores2D(
+                    Assets.EfectEx[0].getWidth()/2,
+                    Assets.EfectEx[0].getHeight()/2
+                    ))
+        ));
+    }
     
     public void update(){
         
         for (int i = 0; i < movimientosObjetos.size(); i++) {
             movimientosObjetos.get(i).update();
+        }
+        
+        for (int i = 0; i < explosion.size(); i++) {
+            Animation ani = explosion.get(i);
+            ani.update();
+            if (!ani.isRunnin()) {
+                explosion.remove(i);
+            }
         }
         
         for (int i = 0; i < movimientosObjetos.size(); i++) {
@@ -94,7 +113,6 @@ public class estadosJuego {
             startWave();
         }
         
-        
     }
     
     public void draw(Graphics g){
@@ -103,6 +121,11 @@ public class estadosJuego {
         
        for (int i = 0; i < movimientosObjetos.size(); i++) {
             movimientosObjetos.get(i).draw(g);
+        }
+       
+        for (int i = 0; i < explosion.size() ; i++) {
+            Animation ani = explosion.get(i);
+            g2d.drawImage(ani.getCurrentFrame(), (int)ani.getPosición().getX(),(int)ani.getPosición().getY(), 30, 30, null);
         }
     }
 
