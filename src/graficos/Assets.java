@@ -36,7 +36,7 @@ public class Assets {
         
         EfectV=Loader.ImageLoader("recursos/efectos/fast.png");
         for (int i = 0; i < 3; i++) {
-        EfectV=Loader.ImageLoader("recursos/efectos/Ex"+i+".png");
+        EfectEx[i] =Loader.ImageLoader("recursos/efectos/Ex"+i+".png");
         }
         
         arma=Loader.ImageLoader("recursos/imagenes/arma.png");
