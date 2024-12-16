@@ -35,8 +35,8 @@ public class Obtaculos extends MovimientosObjeto{
         if (posicion.getX()<0) {
             posicion.setX(Constantes.WIDTH);
         }
-        if (posicion.getY()<0) {
-            posicion.setY(Constantes.HEIGHT);
+        if (posicion.getY()<350) {
+            posicion.setY(350);
         }
         
         
