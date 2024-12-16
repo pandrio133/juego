@@ -28,7 +28,6 @@ public class Vectores2D {
     }
     
     public Vectores2D subtraer(Vectores2D v){
-        
         return new Vectores2D(x-v.getX(), y-v.getY());
     }
     
